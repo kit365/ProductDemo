@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductService {
@@ -40,17 +41,31 @@ public class ProductService {
         product.setThumbnail(productU.getThumbnail());
         product.setDiscountPercentage(productU.getDiscountPercentage());
         product.setDescription(productU.getDescription());
+
         return productRepository.save(product);
     }
 
-    public void deleteProduct(int id) {
+    public void deleteDestroy(int id) {
         productRepository.deleteById(id);
     }
 
-    public void softDeleteProduct(int id) {
+    public void delete(int id) {
         Product product = productRepository.findById(id).get();
         product.setStatus("inactive");
         productRepository.save(product);
     }
 
+    public void deleteRestore (int id) {
+        Product product = productRepository.findById(id).get();
+        product.setStatus("active");
+        productRepository.save(product);
+    }
+
+    public void deleteProducts(List<Integer> list) {
+       for (Integer i : list) {
+           Product product = productRepository.findById(i).get();
+           product.setStatus("inactive");
+           productRepository.save(product);
+       }
+    }
 }
