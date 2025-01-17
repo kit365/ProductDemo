@@ -1,2 +1,4 @@
-## ProductDemo
-- Xong được cái feature cơ bản(tạo, show danh sách, cập nhập thông tin, xóa)
+# Product Demo 🚀
+Welcome to **Project Name**! This project is designed to do amazing things.
+## Features ✨
+- Xong được các feature cơ bản(tạo, show danh sách, cập nhập thông tin, xóa).
