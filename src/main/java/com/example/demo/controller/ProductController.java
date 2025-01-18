@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Product;
+import com.example.demo.entity.Product;
 import com.example.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +31,7 @@ public class ProductController {
     }
 
     //search
-    @GetMapping("search")
+    @GetMapping
     public ResponseEntity searchTitle(@RequestParam("keyword") String keyword){
         return ResponseEntity.ok(productService.getProductByTitle(keyword));
     }

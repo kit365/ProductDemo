@@ -1,12 +1,11 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Product;
+import com.example.demo.entity.Product;
 import com.example.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ProductService {
@@ -51,20 +50,20 @@ public class ProductService {
 
     public void delete(int id) {
         Product product = productRepository.findById(id).get();
-        product.setStatus("inactive");
+        product.setDeleted(true);
         productRepository.save(product);
     }
 
     public void deleteRestore (int id) {
         Product product = productRepository.findById(id).get();
-        product.setStatus("active");
+        product.setDeleted(false);
         productRepository.save(product);
     }
 
     public void deleteProducts(List<Integer> list) {
        for (Integer i : list) {
            Product product = productRepository.findById(i).get();
-           product.setStatus("inactive");
+           product.setDeleted(true);
            productRepository.save(product);
        }
     }
