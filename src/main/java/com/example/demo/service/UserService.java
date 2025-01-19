@@ -38,13 +38,13 @@ public class UserService {
     }
 
     public User addUser(@Valid UserDTO request) {
-            User user = new User();
-            user.setUsername(request.getUsername());
-            user.setPassword(request.getPassword());
-            user.setEmail(request.getEmail());
-            user.setCode(request.getCode());
-            user.setPhoneNumber(request.getPhoneNumber());
-            user.setEnabled(true);
+        User user = new User();
+        user.setUsername(request.getUsername());
+        user.setPassword(request.getPassword());
+        user.setEmail(request.getEmail());
+        user.setCode(request.getCode());
+        user.setPhoneNumber(request.getPhoneNumber());
+        user.setEnabled(true);
         return userRepository.save(user);
     }
 
