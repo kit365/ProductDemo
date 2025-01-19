@@ -61,6 +61,14 @@ public class ProductService {
     }
 
     public void deleteProducts(List<Integer> list) {
+
+//        list.forEach(i -> {
+//            productRepository.findById(i).ifPresent(product -> {
+//                product.setDeleted(true);
+//                productRepository.save(product);
+//            });
+//        });
+
        for (Integer i : list) {
            Product product = productRepository.findById(i).get();
            product.setDeleted(true);
