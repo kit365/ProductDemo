@@ -2,32 +2,28 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Map;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "user")
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      int id;
 
-    @NotBlank(message = "Username cannot be empty")
      String username;
 
-    @Size(min = 8, message = "Password must be at least 8 characters")
-    @NotBlank(message = "Password cannot empty")
      String password;
 
-    @Pattern(regexp = "KH\\d{6}", message = "Code isn't valid")
      String code;
 
-    @Email(message = "Invalid email")
      String email;
 
 
@@ -37,6 +33,10 @@ public class User {
 
      boolean enabled;
 
+    @ElementCollection
+    @CollectionTable(name = "product_prices", joinColumns = @JoinColumn(name = "product_id"))
+    @MapKeyColumn(name = "size")
+    @Column(name = "price")
 
     public int getId() {
         return id;
