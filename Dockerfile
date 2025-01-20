@@ -1,10 +1,14 @@
-# Sử dụng Maven với JDK 21
-FROM maven:3.9.9-openjdk-21-alpine AS build
-COPY . .
-RUN mvn clean package -PProductDemo
+# Sử dụng image Java chính thức
+FROM openjdk:17-jdk-slim
 
-# Sử dụng OpenJDK 21
-FROM openjdk:21-jdk-slim
-COPY --from=build /target/demo-0.0.1-SNAPSHOT.jar demo.jar
+# Đặt thư mục làm việc trong container
+WORKDIR /app
+
+# Copy file JAR vào container
+COPY target/*.jar app.jar
+
+# Expose cổng 8080 (hoặc cổng khác nếu bạn đổi)
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","demo.jar"]
+
+# Command để chạy ứng dụng Spring Boot
+ENTRYPOINT ["java", "-jar", "app.jar"]
