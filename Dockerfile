@@ -2,7 +2,7 @@ FROM maven:3-openjdk-17 AS build
 WORKDIR /app
 
 COPY . .
-RUN mvn clean package -DskipTests
+RUN mvn clean package -ProductDemo
 
 
 # Run stage
